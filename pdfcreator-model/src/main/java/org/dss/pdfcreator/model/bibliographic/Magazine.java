@@ -1,5 +1,6 @@
 package org.dss.pdfcreator.model.bibliographic;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class Magazine {
@@ -26,6 +27,17 @@ public class Magazine {
 	}
 
 	public void setInfo(BibliographicInfo info) {
+		this.info = info;
+	}
+	
+	
+	public Magazine(){
+		articles = new HashMap<Integer, Article>();
+	}
+
+	public Magazine(Map<Integer, Article> articles, BibliographicInfo info) {
+		super();
+		this.articles = articles;
 		this.info = info;
 	}
 	
