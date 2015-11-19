@@ -8,4 +8,27 @@
   <groupId>org.dss.pdfcreator</groupId>
   <artifactId>pdfcreator-services</artifactId>
   <name>pdfcreator-service</name>
+  
+  <properties>
+  	<spring-version>4.2.0.RELEASE</spring-version>
+  </properties>
+  
+  <dependencies>
+  	<dependency>
+  		<groupId>org.springframework</groupId>
+  		<artifactId>spring-webmvc</artifactId>
+  		<version>${spring-version}</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>org.dss.pdfcreator</groupId>
+  		<artifactId>pdfcreator-model</artifactId>
+  		<version>0.0.1-SNAPSHOT</version>
+  	</dependency>
+  	<dependency>
+  		<groupId>junit</groupId>
+  		<artifactId>junit</artifactId>
+  		<version>4.12</version>
+  		<scope>test</scope>
+  	</dependency>
+  </dependencies>
 </project>
