@@ -5,6 +5,8 @@ package org.dss.pdfcreator.model.bibliographic;
 
 import static org.junit.Assert.*;
 
+import java.util.Map;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,12 +16,14 @@ import org.junit.Test;
  *
  */
 public class MagazineBuilderTest {
-
+	
+	private MagazineBuilder builder;
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
+		builder = new MagazineBuilder(); 
 	}
 
 	/**
@@ -27,22 +31,7 @@ public class MagazineBuilderTest {
 	 */
 	@After
 	public void tearDown() throws Exception {
-	}
-
-	/**
-	 * Test method for {@link org.dss.pdfcreator.model.bibliographic.MagazineBuilder#addBibliographicInfo(org.dss.pdfcreator.model.bibliographic.BibliographicInfo)}.
-	 */
-	@Test
-	public void testAddBibliographicInfo() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link org.dss.pdfcreator.model.bibliographic.MagazineBuilder#addArticle(java.lang.Integer, org.dss.pdfcreator.model.bibliographic.Article)}.
-	 */
-	@Test
-	public void testAddArticle() {
-		fail("Not yet implemented");
+		builder = null;
 	}
 
 	/**
@@ -50,7 +39,52 @@ public class MagazineBuilderTest {
 	 */
 	@Test
 	public void testGetMagazine() {
-		fail("Not yet implemented");
+		BibliographicInfo bibliographicInfo = new BibliographicInfo();
+		Article article = new Article();
+		builder.addBibliographicInfo(bibliographicInfo);
+		builder.addArticle(1, article);
+		
+		Magazine magazine = builder.getMagazine();
+		assertNotNull(magazine);
+	}	
+	
+	@Test(expected=IllegalStateException.class)
+	public void testGetMagazineException(){
+		builder.getMagazine();
 	}
+	
+	/**
+	 * Test method for {@link org.dss.pdfcreator.model.bibliographic.MagazineBuilder#addBibliographicInfo(org.dss.pdfcreator.model.bibliographic.BibliographicInfo)}.
+	 */
+	@Test
+	public void testAddBibliographicInfo() {
+		BibliographicInfo bibliographicInfo = new BibliographicInfo();
+		Article article = new Article();
+		builder.addBibliographicInfo(bibliographicInfo);
+		builder.addArticle(1, article);
+		
+		Magazine magazine = builder.getMagazine();
+		BibliographicInfo actual = magazine.getInfo();
+		assertNotNull(actual);
+		assertSame(bibliographicInfo, actual);
+	}
+
+	/**
+	 * Test method for {@link org.dss.pdfcreator.model.bibliographic.MagazineBuilder#addArticle(java.lang.Integer, org.dss.pdfcreator.model.bibliographic.Article)}.
+	 */
+	@Test
+	public void testAddArticle() {
+		BibliographicInfo bibliographicInfo = new BibliographicInfo();
+		Article article = new Article();
+		builder.addBibliographicInfo(bibliographicInfo);
+		builder.addArticle(1, article);
+		
+		Magazine magazine = builder.getMagazine();
+		Map<Integer, Article> actual = magazine.getArticles();
+		assertNotNull(actual);
+		assertSame(article, actual.get(1));		
+	}
+
+
 
 }
