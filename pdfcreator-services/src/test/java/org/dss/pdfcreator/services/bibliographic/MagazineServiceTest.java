@@ -11,14 +11,24 @@ import org.dss.pdfcreator.model.bibliographic.MagazineBuilder;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.namedparam.NamedParameterJdbcOperations;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration()
 public class MagazineServiceTest {
 
 	private MagazineService magazineService;
 	
+	@Autowired
+	private NamedParameterJdbcOperations template;
+	
 	@Before
 	public void setUp() throws Exception {
-		magazineService = new MagazineService();
+		magazineService = new MagazineService(template);
 	}
 
 	@After
@@ -50,7 +60,7 @@ public class MagazineServiceTest {
 		
 		magazineService.delete(magazineBuilder.getMagazine());
 		
-		List<Magazine> actualList2 =magazineService.list();
+		List<Magazine> actualList2 = magazineService.list();
 		
 		assertNotNull("Empty magazine list",actualList1);
 		assertNotNull("Empty magazine list",actualList2);
