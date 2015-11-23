@@ -4,6 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Magazine {
+	
+	/**
+	 * Surrogate primary key
+	 */
+	public Integer id;
 	/**
 	 * List of articles 
 	 */
@@ -30,13 +35,21 @@ public class Magazine {
 		this.info = info;
 	}
 	
-	
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
 	public Magazine(){
 		articles = new HashMap<Integer, Article>();
 	}
 
-	public Magazine(Map<Integer, Article> articles, BibliographicInfo info) {
+	public Magazine(Integer id, Map<Integer, Article> articles, BibliographicInfo info) {
 		super();
+		this.id = id;
 		this.articles = articles;
 		this.info = info;
 	}

@@ -9,12 +9,20 @@ public class MagazineBuilder {
 	
 	private Map<Integer, Article> articles;
 	
+	private Integer id;
+	
 	private synchronized Magazine createMagazineInstance(){
 		return new Magazine();
 	}
 	
 	public MagazineBuilder addBibliographicInfo(BibliographicInfo info){
 		this.info = info;
+		return this;
+	}
+	
+	
+	public MagazineBuilder addId(Integer id){
+		this.id = id;
 		return this;
 	}
 	

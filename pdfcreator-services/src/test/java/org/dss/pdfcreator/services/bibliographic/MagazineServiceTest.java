@@ -8,6 +8,7 @@ import org.dss.pdfcreator.model.bibliographic.Article;
 import org.dss.pdfcreator.model.bibliographic.BibliographicInfo;
 import org.dss.pdfcreator.model.bibliographic.Magazine;
 import org.dss.pdfcreator.model.bibliographic.MagazineBuilder;
+import org.dss.pdfcreator.services.configuration.DatabaseConfiguration;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +19,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration()
+@ContextConfiguration(classes={DatabaseConfiguration.class})
 public class MagazineServiceTest {
 
 	private MagazineService magazineService;
